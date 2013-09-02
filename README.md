@@ -14,3 +14,19 @@ require 'rspec-system-serverspec/helpers'
 include Serverspec::Helper::RSpecSystem
 include Serverspec::Helper::DetectOS
 ```
+
+## Multi-node tests
+
+If you wish to perform rspec tests on multiple nodes, you can speficiy the node using the **node** metadata parameter.
+
+Using the **node** example metadata
+
+```ruby
+describe host('server.vm'), :node => 'client.vm'  do
+  it { should be_resolvable }
+end
+
+describe host('client.vm'), :node => 'server.vm'  do
+  it { should be_resolvable }
+end
+```
